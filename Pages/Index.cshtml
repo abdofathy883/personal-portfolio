@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1 class="text-center">Welcome</h1>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col entrance">
+            <h3>Projects</h3>
+            <p>@Model.Projects.Count</p>
+
+        </div>
+        <div class="col entrance">
+            <h3>Categories</h3>
+            <p>@Model.Categories.Count</p>
+        </div>
+        <div class="col entrance">
+            <h3>Skills</h3>
+            <p>@Model.Skills.Count</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col entrance">
+            <h3>Entries</h3>
+            <p>@Model.Entries.Count</p>
+        </div>
+        <div class="col">
+            Column
+        </div>
+        <div class="col">
+            Column
+        </div>
+    </div>
+</div>
+
+
+

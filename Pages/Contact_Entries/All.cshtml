@@ -1,0 +1,42 @@
+﻿@page
+@model AdminDashboard.Pages.Contact_Entries.AllModel
+@{
+}
+
+<h1>All Contact Form Submissions</h1>
+<br />
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in Model.ContactEntries)
+            {
+                <tr>
+                    <td>@entry.Name</td>
+                    <td>@entry.Phone</td>
+                    <td>@entry.Email</td>
+                    <td>@entry.Message</td>
+                    <td>@entry.DateSent.ToString()</td>
+                    <td>@entry.Status</td>
+                    <td>
+                        <input type="checkbox" asp-for="@entry.Status" class="form-check" />
+                    </td>
+                    <td style="white-space:nowrap">
+                        @* <a asp-page="Edit" asp-route-id="@entry.Id" class="btn btn-success">Approve</a> *@
+                        <input type="submit" value="Approve" class="btn btn-primary" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

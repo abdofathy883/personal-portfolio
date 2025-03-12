@@ -1,0 +1,70 @@
+﻿@page
+@model AdminDashboard.Pages.Projects.AllModel
+@{
+}
+<h1 class="text-center">All Projects</h1>
+<a class="btn btn-primary" href="/Projects/Add">Add New Project</a>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Featured</th>
+            <th>Link</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>@project.Title</td>
+                <td>@project.Discription</td>
+                <td><img src="@project.ImageURL" style="width: 100px; height: 100px;" /></td>
+                <td>@project.Category</td>
+                <td>@project.IsFeatured</td>
+                <td>@project.URL</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-success" href="~/Projects/Edit">Edit</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" data-id="@project.ID">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this Project?</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post">
+                    <input type="hidden" id="deleteCatId" name="catID" />
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const deleteModal = document.getElementById("deleteModal");
+    deleteModal.addEventListener("show.bs.modal", function (event){
+        const button = event.relatedTarget;
+        const proID = button.getAttribute('data-id');
+        const input = document.getElementById('deleteProId');
+        input.value = proID;
+    });
+</script>

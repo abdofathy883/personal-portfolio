@@ -1,0 +1,32 @@
+﻿@page
+@model AdminDashboard.Pages.Users.AllModel
+@{
+}
+
+<h1 class="text-center">All Users</h1>
+<a asp-page="Add" class="btn btn-primary">Add New User</a>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+         { 
+             <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                 <td style="white-space:nowrap">
+                     <a asp-page="Edit" asp-route-id="@user.Id" class="btn btn-success">Edit</a>
+                     <a asp-page="Delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                 </td>
+             </tr>
+         }
+    </tbody>
+</table>
